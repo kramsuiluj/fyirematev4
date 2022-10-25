@@ -14,6 +14,10 @@
         name="{{ $name }}"
         placeholder="{{ $placeholder }}"
         class="font-varela bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500
-        focus:border-blue-500 block w-full p-2.5"
+        focus:border-blue-500 block w-full p-2.5 outline-orange-500"
     >
+
+    @error($name)
+        <p class="text-xs text-red-500 absolute font-montserrat mt-1">{{ $message }}</p>
+    @enderror
 </div>
