@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     SessionController,
     DashboardController,
+    HeadController,
 };
 
 Route::group(['middleware' => 'guest'], function () {
@@ -18,5 +19,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-
+    Route::get('/heads/create', [HeadController::class, 'create'])->name('heads.create');
+    Route::post('/heads', [HeadController::class, 'store'])->name('heads.store');
 });

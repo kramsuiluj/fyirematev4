@@ -27,7 +27,7 @@ class SessionController extends Controller
 
         if (!auth()->attempt($credentials, request('remember'))) {
             throw ValidationException::withMessages([
-                'username' => 'Your provided credentials could not be verified.'
+                'username' => 'Username or password you entered must\'ve been incorrect.'
             ]);
         }
 

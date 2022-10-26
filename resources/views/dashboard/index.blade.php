@@ -1,8 +1,7 @@
 <x-layout>
-    <form action="{{ route('sessions.destroy') }}" method="POST">
-        @csrf
-        @method('DELETE')
+    @include('_header')
+    @include('_side-nav')
 
-        <button>Logout</button>
-    </form>
+
 </x-layout>
+s
