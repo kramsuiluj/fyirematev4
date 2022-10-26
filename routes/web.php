@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/heads', [HeadController::class, 'index'])->name('heads.index');
     Route::get('/heads/create', [HeadController::class, 'create'])->name('heads.create');
     Route::post('/heads', [HeadController::class, 'store'])->name('heads.store');
 });

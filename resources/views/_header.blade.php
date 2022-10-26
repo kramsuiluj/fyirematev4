@@ -17,10 +17,10 @@
                 style="display: none"
                 class="absolute bg-white text-md right-0 w-full text-center font-varela text-gray-600 border rounded-md"
             >
-                <li class="hover:bg-gray-100">
+                <li class="hover:bg-gray-100 border-b py-1">
                     <a href="#">Profile</a>
                 </li>
-                <li class="hover:bg-gray-100">
+                <li class="hover:bg-gray-100 py-1">
                     <a href="#" @click.prevent="document.getElementById('logout').submit()">Logout</a>
 
                     <form action="{{ route('sessions.destroy') }}" method="POST" id="logout">

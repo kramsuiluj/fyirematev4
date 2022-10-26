@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Head;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -30,6 +31,14 @@ class DatabaseSeeder extends Seeder
             'position' => 'Administrator',
             'is_admin' => true,
             'password' => bcrypt('!password')
+        ]);
+
+        Head::factory(5)->create([
+            'position' => 'Chief'
+        ]);
+
+        Head::factory(5)->create([
+            'position' => 'Marshal'
         ]);
     }
 }

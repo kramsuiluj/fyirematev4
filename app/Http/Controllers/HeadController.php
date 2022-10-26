@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Head;
-use Illuminate\Validation\Rules\Enum;
 
 class HeadController extends Controller
 {
+    public function index()
+    {
+        return view('admin.heads.index', [
+            'heads' => Head::latest()->get()
+        ]);
+    }
+
     public function create()
     {
         return view('admin.heads.create');
@@ -22,8 +28,8 @@ class HeadController extends Controller
             'lastname' => ['required', 'string', 'min:2', 'max:50']
         ]);
 
-        Head::create($attributes);
+        Head::truncate();
 
-        dd($attributes);
+        Head::create($attributes);
     }
 }
