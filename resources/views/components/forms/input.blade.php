@@ -1,4 +1,4 @@
-@props(['type' => 'text', 'name', 'label', 'placeholder' => ''])
+@props(['type' => 'text', 'name', 'label', 'placeholder' => '', 'value' => ''])
 
 <div class="mb-6">
     <label
@@ -15,6 +15,7 @@
         placeholder="{{ $placeholder }}"
         class="font-varela bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500
         focus:border-blue-500 block w-full p-2.5 outline-orange-500"
+        value="{{ $value }}"
     >
 
     @error($name)

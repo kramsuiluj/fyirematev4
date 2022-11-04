@@ -2,7 +2,7 @@
     <main class="w-1/3 m-0 border bg-white rounded-md shadow vertical-center absolute top-1/2 left-1/2">
         <section class="w-3/4 mx-auto my-16 space-y-10">
             <header>
-                <h2 class="font-silkscreen font-bold text-2xl tracking-widest text-center">
+                <h2 class="font-daysone font-bold text-2xl tracking-widest text-center">
                     <span class="text-orange-500">FYIRE</span><span class="text-blue-900">MATE</span>
                 </h2>
             </header>

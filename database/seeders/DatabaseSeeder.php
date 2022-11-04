@@ -3,8 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Applicant;
+use App\Models\Fsic;
 use App\Models\Head;
+use App\Models\Payment;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -39,6 +43,32 @@ class DatabaseSeeder extends Seeder
 
         Head::factory(5)->create([
             'position' => 'Marshal'
+        ]);
+
+        $fsic = Fsic::create([
+            'date' => Carbon::now(),
+            'occupancy' => 'Private',
+            'issuance' => 'New',
+            'establishment' => 'Test Establishment',
+            'description' => 'This is an example of a description.',
+            'expiration' => Carbon::tomorrow(),
+            'chief' => Head::firstWhere('position', 'Chief')->fullname(),
+            'marshal' => Head::firstWhere('position', 'Marshal')->fullname(),
+        ]);
+
+        Payment::create([
+            'fsic_id' => $fsic->id,
+            'amount' => 45.50,
+            'or_number' => '123456',
+            'date' => Carbon::now()
+        ]);
+
+        Applicant::create([
+            'fsic_id' => $fsic->id,
+            'firstname' => 'John',
+
+            'middlename' => 'Smith',
+            'lastname' => 'Doe'
         ]);
     }
 }

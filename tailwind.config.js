@@ -12,7 +12,10 @@ module.exports = {
             silkscreen: ['Silkscreen', 'cursive'],
             kanit: ['Kanit', 'sans-serif'],
             varela: ['Varela Round', 'sans-serif'],
-            montserrat: ['Montserrat', 'sans-serif']
+            montserrat: ['Montserrat', 'sans-serif'],
+            barlow: ['Barlow', 'sans-serif'],
+            barlowcondensed: ['Barlow Condensed', 'sans-serif'],
+            daysone: ['Days One', 'sans-serif']
         }
     },
   },

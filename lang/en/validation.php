@@ -156,6 +156,15 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'firstname' => [
+            'min' => 'The first name must be at least :min characters.'
+        ],
+        'middlename' => [
+            'min' => 'The middle name must be at least :min characters.'
+        ],
+        'lastname' => [
+            'min' => 'The last name must be at least :min characters.'
+        ]
     ],
 
     /*
