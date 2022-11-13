@@ -73,9 +73,9 @@
                                         <th scope="col" class="text-sm px-6 py-4 text-left">
                                             Status
                                         </th>
-                                        <th scope="col" class="text-sm px-6 py-4 text-left">
-                                            Validity
-                                        </th>
+{{--                                        <th scope="col" class="text-sm px-6 py-4 text-left">--}}
+{{--                                            Validity--}}
+{{--                                        </th>--}}
                                         <th scope="col" class="text-sm px-6 py-4 text-left">
                                             Occupancy
                                         </th>
@@ -103,9 +103,9 @@
                                             <td class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap">
                                                 <span class="for-inspection">{{ $certificate->status }}</span>
                                             </td>
-                                            <td class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap">
-                                                <span class="valid">{{ $certificate->validity }}</span>
-                                            </td>
+{{--                                            <td class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap">--}}
+{{--                                                <span class="valid">{{ $certificate->validity }}</span>--}}
+{{--                                            </td>--}}
                                             <td class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap">
                                                 <span class="business">{{ $certificate->occupancy_type }}</span>
 
