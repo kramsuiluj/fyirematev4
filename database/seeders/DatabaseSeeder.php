@@ -70,5 +70,7 @@ class DatabaseSeeder extends Seeder
             'middlename' => 'Smith',
             'lastname' => 'Doe'
         ]);
+
+        User::factory(5)->create();
     }
 }

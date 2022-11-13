@@ -3,5 +3,5 @@
         {{ $slot }}
     </h2>
 
-    {{ $filter ?? '' }}
+    {{ $actions ?? '' }}
 </section>

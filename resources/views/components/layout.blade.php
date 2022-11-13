@@ -33,7 +33,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-300">
+<body class="bg-gray-900">
     {{ $slot }}
 </body>
 </html>

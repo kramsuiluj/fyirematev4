@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function fullname(): string
+    {
+        return $this->title . ' ' . $this->firstname . ' ' . $this->middlename[0] . '. ' . $this->lastname;
+    }
+
 }

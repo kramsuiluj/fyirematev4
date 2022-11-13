@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fsic_id')->constrained('fsics', 'id');
+            $table->foreignId('certificate_id')->constrained('certificates', 'id');
+            $table->string('establishment');
             $table->string('firstname');
             $table->string('middlename');
             $table->string('lastname');
+            $table->text('address');
             $table->timestamps();
         });
     }

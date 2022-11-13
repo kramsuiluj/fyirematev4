@@ -10,7 +10,8 @@ class HeadController extends Controller
     public function index()
     {
         return view('admin.heads.index', [
-            'heads' => Head::latest()
+            'heads' => Head::latest()->get(),
+            'heads_filter' => Head::latest()
                 ->filter(request(['filter']))
                 ->get()
         ]);
@@ -43,6 +44,8 @@ class HeadController extends Controller
 
     public function update(Head $head)
     {
+        $updated = [];
+
         $attributes = request()->validate([
             'position' => ['required', 'string'],
             'title' => ['required', 'string'],
@@ -51,16 +54,31 @@ class HeadController extends Controller
             'lastname' => ['required', 'string', 'min:2', 'max:50']
         ]);
 
-        $updates = [];
-
-        $updates['firstname'] = $this->checkToUpdate($attributes['firstname'], $head->firstname) ?? '';
-    }
-
-    protected function checkToUpdate($new, $old){
-        if ($new != $old) {
-            return $new;
+        if ($attributes['position'] != $head->position) {
+            $updated['position'] = $attributes['position'];
         }
-        return false;
+
+        if ($attributes['title'] != $head->title) {
+            $updated['title'] = $attributes['title'];
+        }
+
+        if ($attributes['firstname'] != $head->firstname) {
+            $updated['firstname'] = $attributes['firstname'];
+        }
+
+        if ($attributes['middlename'] != $head->middlename) {
+            $updated['middlename'] = $attributes['middlename'];
+        }
+
+        if ($attributes['lastname'] != $head->lastname) {
+            $updated['lastname'] = $attributes['lastname'];
+        }
+
+        if (count($updated) == 0) {
+            return redirect(route('admin.heads.index'))->with('success', 'You did not update any field.');
+        }
+
+        return redirect(route('admin.heads.index'))->with('success', 'You have successfully updated the personnel details.');
     }
 
     public function destroy(Head $head)

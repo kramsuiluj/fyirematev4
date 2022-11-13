@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{FsicController, SessionController, DashboardController, HeadController};
+use App\Http\Controllers\{AdminUserController, CertificateController, FsicController, SessionController, DashboardController, HeadController};
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [SessionController::class, 'create'])->name('sessions.create');
@@ -10,16 +10,29 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::delete('/logout', [SessionController::class, 'destroy'])->name('sessions.destroy');
-    Route::get('/certificates/create', [FsicController::class, 'create'])->name('certificates.create');
+    Route::get('/certificates/index', [CertificateController::class, 'index'])->name('certificates.index');
+    Route::get('/certificates/create', [CertificateController::class, 'create'])->name('certificates.create');
+    Route::post('/certificates/store', [CertificateController::class, 'store'])->name('certificates.store');
 });
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware('auth');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/heads', [HeadController::class, 'index'])->name('heads.index');
-    Route::get('/heads/create', [HeadController::class, 'create'])->name('heads.create');
-    Route::post('/heads', [HeadController::class, 'store'])->name('heads.store');
-    Route::get('/heads/{head}/edit', [HeadController::class, 'edit'])->name('heads.edit');
-    Route::patch('/heads/{head}', [HeadController::class, 'update'])->name('heads.update');
-    Route::delete('/heads/{head}', [HeadController::class, 'destroy'])->name('heads.destroy');
+    Route::group(['as' => 'heads.'], function () {
+        Route::get('/heads', [HeadController::class, 'index'])->name('index');
+        Route::get('/heads/create', [HeadController::class, 'create'])->name('create');
+        Route::post('/heads', [HeadController::class, 'store'])->name('store');
+        Route::get('/heads/{head}/edit', [HeadController::class, 'edit'])->name('edit');
+        Route::patch('/heads/{head}', [HeadController::class, 'update'])->name('update');
+        Route::delete('/heads/{head}', [HeadController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::group(['as' => 'users.'], function () {
+        Route::get('/users', [AdminUserController::class, 'index'])->name('index');
+        Route::get('/users/create', [AdminUserController::class, 'create'])->name('create');
+        Route::post('/users/store', [AdminUserController::class, 'store'])->name('store');
+        Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])->name('edit');
+        Route::patch('/users/{user}', [AdminUserController::class, 'update'])->name('update');
+        Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('destroy');
+    });
 });

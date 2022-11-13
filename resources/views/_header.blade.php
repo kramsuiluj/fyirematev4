@@ -13,7 +13,7 @@
 
             <div x-show="show" class="absolute bg-white w-full text-left border rounded-bl rounded-br shadow mt-2">
                 <ul class="">
-                    <li class="cursor-pointer hover:bg-gray-100 px-2 py-0.5 hover:font-semibold">Profile</li>
+                    <li class="cursor-pointer hover:bg-gray-100 px-2 py-0.5 hover:font-semibold border-b">Profile</li>
                     <li class="cursor-pointer hover:bg-gray-100 px-2 py-0.5 hover:font-semibold">
                         <a href="#" @click.prevent="document.getElementById('logout').submit()">Log out</a>
 
