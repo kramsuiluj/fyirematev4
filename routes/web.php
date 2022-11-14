@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Certificate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{AdminUserController, CertificateController, FsicController, SessionController, DashboardController, HeadController};
 
@@ -36,3 +37,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('destroy');
     });
 });
+
+Route::get('/certificates/{certificate}/print', function (Certificate $certificate) {
+
+//   dd($certificate);
+
+   return view('print', [
+       'certificate' => $certificate
+   ]);
+})->name('print');
