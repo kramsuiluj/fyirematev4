@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminUserController extends Controller
 {
@@ -24,9 +25,24 @@ class AdminUserController extends Controller
         $attributes = request()->validate([
             'username' => ['required', 'min:5', 'max:25', 'string', 'alpha_num'],
             'position' => ['required', 'max:50', 'string'],
-            'firstname' => ['required', 'min:2', 'max:50', 'string', 'alpha'],
-            'middlename' => ['required', 'min:2', 'max:50', 'string', 'alpha'],
-            'lastname' => ['required', 'min:2', 'max:50', 'string', 'alpha'],
+            'firstname' => ['required', 'min:2', 'max:50', 'string',
+                Rule::unique('users')
+                    ->where('firstname', request('firstname'))
+                    ->where('middlename', request('middlename'))
+                    ->where('lastname', request('lastname'))
+            ],
+            'middlename' => ['required', 'min:2', 'max:50', 'string', 'alpha',
+                Rule::unique('users')
+                    ->where('firstname', request('firstname'))
+                    ->where('middlename', request('middlename'))
+                    ->where('lastname', request('lastname'))
+            ],
+            'lastname' => ['required', 'min:2', 'max:50', 'string', 'alpha',
+                Rule::unique('users')
+                    ->where('firstname', request('firstname'))
+                    ->where('middlename', request('middlename'))
+                    ->where('lastname', request('lastname'))
+            ],
             'password' => ['required', 'min:5', 'confirmed'],
         ]);
 

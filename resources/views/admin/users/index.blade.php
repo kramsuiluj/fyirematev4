@@ -8,7 +8,7 @@
                 <span class="font-bold">USERS</span>
 
                 <x-slot name="actions">
-                    <a href="{{ route('admin.heads.create') }}" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none
+                    <a href="{{ route('admin.users.create') }}" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none
                         focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center flex justify-between
                         items-center space-x-2">
                         <x-icon name="add"></x-icon>
