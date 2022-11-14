@@ -117,7 +117,7 @@
                                                 {{ $certificate->applicant->fullname() }}
                                             </td>
                                             <td class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap">
-                                                {{ date('F j, Y, g:i a', strtotime($certificate->filled_at)) }}
+                                                {{ date('F j, Y, g:i a', strtotime($certificate->filled_date)) }}
                                             </td>
                                             <td x-data="{ show: false }" class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap
                                             flex space-x-2">
@@ -180,4 +180,6 @@
             </div>
         </x-containers.content>
     </x-containers.main>
+
+    @include('_flash')
 </x-layout>

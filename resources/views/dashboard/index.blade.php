@@ -78,7 +78,7 @@
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Total Certificates', 'Total Completed Certificates', 'Total Incomplete Certificates', 'Total Expired Certificates'],
+                labels: ['Total Certificates', 'Completed Certificates', 'Incomplete Certificates', 'Expired Certificates'],
                 datasets: [{
                     label: ['# of Certificates'],
                     data: stats,

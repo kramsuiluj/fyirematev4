@@ -77,6 +77,6 @@ class CertificateController extends Controller
             'date' => $attributes['payment_date']
         ]);
 
-        return redirect(route('dashboard'))->with('success', 'Application was processed successfully.');
+        return redirect(route('certificates.index'))->with('success', 'Application was processed successfully.');
     }
 }

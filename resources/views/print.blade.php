@@ -11,6 +11,11 @@
     @vite('resources/css/app.css')
     <title>Document</title>
     <style>
+        body {
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+        }
+
         @page {
             size: A4 portrait;
             margin: 0;
@@ -55,11 +60,11 @@
         }
     </style>
 </head>
-<body class="bg-gray-200">
+<body class="">
 
     <header class="mb-5">
-        <section class="bg-white mx-auto rounded-bl rounded-br flex justify-between items-center p-2 border-b-2
-        border-slate-700">
+        <section class="bg-gray-200 mx-auto flex justify-between items-center p-2 border-b-2 border-l-2 border-r-2
+        border-gray-400 rounded-bl rounded-br">
             <div x-data="{ show: false }" class="flex items-center space-x-3">
                 <button id="print" class="flex space-x-1 items-center bg-blue-500 text-white py-1 px-4 rounded">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
@@ -142,10 +147,12 @@
          data-payment-date="{{ $certificate->payment->date }}"
          data-chief="{{ $certificate->chief }}"
          data-marshal="{{ $certificate->marshal }}"
+         data-establishment="{{ $certificate->applicant->establishment }}"
     >
     </div>
 
-    <div id="page" class="bg-white relative mx-auto justify-between" data-size="A4"></div>
+    <div id="page" class="bg-white relative mx-auto justify-between outline outline-gray-400 box-border"
+         data-size="A4"></div>
 
     <script>
         let active;
@@ -159,18 +166,15 @@
         let textContent = document.getElementById('textContent');
         const details = document.getElementById('details').dataset;
         const elements = JSON.parse(JSON.stringify(details));
-        console.log(JSON.parse(JSON.stringify(details)));
 
-        // const elements = {
-        //     name: "Mark",
-        //     address: "Bato",
-        //     establishment: "Test Establishment"
-        // };
-
-        console.log(elements);
+        const positions = {
+            applicant: {
+                x: '325px',
+                y: '325px'
+            }
+        }
 
         for (const element in elements) {
-            // console.log(element);
             const item = document.createElement('div');
             item.id = element;
             item.classList.add('draggable', 'ui-widget-content', 'whitespace-nowrap');
@@ -221,8 +225,8 @@
 
         if (document.getElementById('applicant')) {
             let applicant = document.getElementById('applicant');
-            applicant.style.top = '325px';
-            applicant.style.left = '325px';
+            applicant.style.top = positions.applicant.y;
+            applicant.style.left = positions.applicant.x;
         }
 
         if (document.getElementById('description')) {
@@ -294,8 +298,13 @@
         });
 
         save.addEventListener('click', () => {
-            active.style.top = yPos.value + 'px';
-            active.style.left = xPos.value + 'px';
+            let id = active.id;
+            // active.style.top = yPos.value + 'px';
+            // active.style.left = xPos.value + 'px';
+            // console.log(id);
+            // console.log(positions[id].x);
+            positions[id].x = xPos.value;
+            positions[id].y = yPos.value;
         });
 
         print.addEventListener('click', () => {
