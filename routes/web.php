@@ -1,8 +1,14 @@
 <?php
 
-use App\Models\Certificate;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AdminUserController, CertificateController, FsicController, SessionController, DashboardController, HeadController};
+use App\Http\Controllers\{
+    AdminUserController,
+    CertificateController,
+    SessionController,
+    DashboardController,
+    HeadController,
+    PrintController
+};
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [SessionController::class, 'create'])->name('sessions.create');
@@ -38,11 +44,4 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 });
 
-Route::get('/certificates/{certificate}/print', function (Certificate $certificate) {
-
-//   dd($certificate);
-
-   return view('print', [
-       'certificate' => $certificate
-   ]);
-})->name('print');
+Route::get('/certificates/{certificate}/print', PrintController::class)->name('print');

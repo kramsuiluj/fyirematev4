@@ -13,9 +13,9 @@ class DashboardController extends Controller
     {
         return view('dashboard.index', [
             'total_certificates' => count(Certificate::all()),
-            'total_completed' => 99,
-            'total_incomplete' => 50,
-            'total_expired' => 16
+            'total_completed' => count(Certificate::where('status', 'Completed')->get()),
+            'total_incomplete' => count(Certificate::where('status', 'For Inspection')->get()),
+            'total_expired' => count(Certificate::where('validity', 'Invalid')->get())
         ]);
     }
 }

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Certificate;
 
 class PrintController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Certificate $certificate)
     {
-        return view('print');
+        return view('print', [
+            'certificate' => $certificate
+        ]);
     }
 }
