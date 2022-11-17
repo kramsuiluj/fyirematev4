@@ -124,21 +124,29 @@
                                             <td x-data="{ show: false }" class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap
                                             flex space-x-2">
                                                 <a id="edit-button" href="{{ route('print', $certificate->id) }}"
-                                                   class="text-cyan-700" target="_blank">
+                                                   class="text-cyan-700" target="_blank" title="Print">
                                                     <svg class="w-6 h-6 text-blue-500" fill="none"
                                                          stroke="currentColor"
                                                          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
                                                 </a>
-                                                <a href="{{ route('certificates.show', $certificate->id) }}">
+                                                <a href="{{ route('ios.index', $certificate->id) }}"
+                                                   title="Inspection Orders">
+                                                    <x-icon name="io"></x-icon>
+                                                </a>
+                                                <a href="{{ route('certificates.show', $certificate->id) }}"
+                                                   class="text-green-500" title="Show Certificate Details">
                                                     <x-icon name="show"></x-icon>
                                                 </a>
-                                                <a id="edit-button" href="edit" class="text-cyan-700">
+                                                <a id="edit-button" href="edit" class="text-cyan-700"
+                                                   title="Edit Certificate Details">
                                                     <x-icon name="edit"></x-icon>
                                                 </a>
-                                                <a href="">
+                                                <a href="" title="Renew Certificate">
                                                     <x-icon name="renew"></x-icon>
                                                 </a>
-                                                <a @click="show = !show" id="delete-button" href="#" class="text-red-700">
+                                                <a @click="show = !show" id="delete-button" href="#" class="text-red-700"
+                                                   title="Delete Certificate"
+                                                >
                                                     <x-icon name="delete"></x-icon>
 
                                                     <form id="delete-id" action="destroy" method="POST" style="display: none">

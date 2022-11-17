@@ -7,7 +7,9 @@ use App\Http\Controllers\{
     SessionController,
     DashboardController,
     HeadController,
-    PrintController
+    PrintController,
+    InspectionOrderController,
+    InspectionOrderPrintController,
 };
 
 Route::group(['middleware' => 'guest'], function () {
@@ -21,6 +23,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/certificates/create', [CertificateController::class, 'create'])->name('certificates.create');
     Route::get('/certificates/{certificate}', [CertificateController::class, 'show'])->name('certificates.show');
     Route::post('/certificates/store', [CertificateController::class, 'store'])->name('certificates.store');
+
+    Route::get('/certificates/{certificate}/ios', [InspectionOrderController::class, 'index'])->name('ios.index');
+    Route::get('/certificates/{certificate}/ios/create', [InspectionOrderController::class, 'create'])->name('ios.create');
+    Route::post('/certificates/{certificate}/ios', [InspectionOrderController::class, 'store'])->name('ios.store');
+    Route::get('/certificates/{certificate}/ios/{io:inspection_order_id}/print', InspectionOrderPrintController::class)->name('ios.print');
 });
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware('auth');

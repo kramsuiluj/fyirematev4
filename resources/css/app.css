@@ -37,6 +37,6 @@
     }
 
     .form-fields {
-        @apply grid gap-5 p-5;
+        @apply grid gap-5 p-5 col-span-4;
     }
 }

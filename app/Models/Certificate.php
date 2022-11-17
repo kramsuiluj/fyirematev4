@@ -9,7 +9,7 @@ class Certificate extends Model
 {
     use HasFactory;
 
-    protected $with = ['applicant', 'payment'];
+    protected $with = ['applicant', 'payment', 'io'];
 
     public function applicant()
     {
@@ -19,5 +19,10 @@ class Certificate extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function io()
+    {
+        return $this->hasMany(InspectionOrder::class);
     }
 }

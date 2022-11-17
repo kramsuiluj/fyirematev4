@@ -35,7 +35,7 @@
                         <h1 class="text-4xl">{{ $total_completed }}</h1>
                     </div>
 
-                    <p>Total Number of Completed Certificates</p>
+                    <p>Total Number of Completed Certific`ates</p>
                 </div>
 
                 <div class="border space-y-5 p-2 bg-gray-500 text-white rounded font-barlow">
