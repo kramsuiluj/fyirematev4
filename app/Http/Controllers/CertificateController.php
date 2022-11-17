@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
+    public function show(Certificate $certificate)
+    {
+        return view('certificates.show', [
+            'certificate' => $certificate
+        ]);
+    }
+
     public function index()
     {
         return view('certificates.index', [

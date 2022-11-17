@@ -39,7 +39,7 @@
                     <p class="absolute mt-5 text-xs font-varela text-red-500">{{ $message }}</p>
                     @enderror
 
-                    <label for="others">Others</label>
+                    <label for="others">Others <span class="text-xs">(Not required)</span></label>
                     @error('others')
                     <p class="absolute mt-5 text-xs font-varela text-red-500">{{ $message }}</p>
                     @enderror

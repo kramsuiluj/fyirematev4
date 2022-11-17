@@ -17,8 +17,9 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::delete('/logout', [SessionController::class, 'destroy'])->name('sessions.destroy');
-    Route::get('/certificates/index', [CertificateController::class, 'index'])->name('certificates.index');
+    Route::get('/certificates', [CertificateController::class, 'index'])->name('certificates.index');
     Route::get('/certificates/create', [CertificateController::class, 'create'])->name('certificates.create');
+    Route::get('/certificates/{certificate}', [CertificateController::class, 'show'])->name('certificates.show');
     Route::post('/certificates/store', [CertificateController::class, 'store'])->name('certificates.store');
 });
 

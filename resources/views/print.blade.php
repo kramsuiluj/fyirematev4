@@ -12,8 +12,7 @@
     <title>Document</title>
     <style>
         body {
-            background: rgb(2,0,36);
-            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+
         }
 
         @page {
@@ -60,7 +59,7 @@
         }
     </style>
 </head>
-<body class="">
+<body class="bg-gray-900">
 
     <header class="mb-5">
         <section class="bg-gray-200 mx-auto flex justify-between items-center p-2 border-b-2 border-l-2 border-r-2
@@ -95,10 +94,6 @@
                                                 id="modal-title">Add Element</h3>
                                             <div class="mt-2">
                                                 <div class="space-y-2">
-                                                    <div>
-                                                        <label for="">ID</label>
-                                                        <input id="newId" type="text" class="text-field w-72">
-                                                    </div>
                                                     <div>
                                                         <label for="">Text Content</label>
                                                         <input id="textContent" type="text" class="text-field w-72">
@@ -177,7 +172,7 @@
         for (const element in elements) {
             const item = document.createElement('div');
             item.id = element;
-            item.classList.add('draggable', 'ui-widget-content', 'whitespace-nowrap');
+            item.classList.add('draggable', 'ui-widget-content', 'whitespace-nowrap', 'cursor-move');
             item.innerText = elements[element];
 
             page.append(item);
@@ -311,9 +306,12 @@
            window.print();
         });
 
+        let id = 1;
+
         add.addEventListener('click', () => {
             let newElement = document.createElement('div');
-            newElement.id = newId.value;
+            newElement.id = id.toString();
+            id++;
             newElement.classList.add('draggable', 'ui-widget-content', 'whitespace-nowrap');
             newElement.innerText = textContent.value;
 
@@ -340,7 +338,6 @@
                 console.log(newElement);
             });
 
-            newId.value = '';
             textContent.value = '';
         });
 

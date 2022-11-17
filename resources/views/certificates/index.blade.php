@@ -71,11 +71,11 @@
                                             #
                                         </th>
                                         <th scope="col" class="text-sm px-6 py-4 text-left">
+                                            Type
+                                        </th>
+                                        <th scope="col" class="text-sm px-6 py-4 text-left">
                                             Status
                                         </th>
-{{--                                        <th scope="col" class="text-sm px-6 py-4 text-left">--}}
-{{--                                            Validity--}}
-{{--                                        </th>--}}
                                         <th scope="col" class="text-sm px-6 py-4 text-left">
                                             Occupancy
                                         </th>
@@ -100,12 +100,14 @@
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700">
                                                 {{ $certificate->id }}
                                             </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700">
+                                                <span class="{{ $certificate->issuance_type == 'New' ? 'new' : 'renewal' }}">
+                                                    {{ $certificate->issuance_type }}
+                                                </span>
+                                            </td>
                                             <td class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap">
                                                 <span class="for-inspection">{{ $certificate->status }}</span>
                                             </td>
-{{--                                            <td class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap">--}}
-{{--                                                <span class="valid">{{ $certificate->validity }}</span>--}}
-{{--                                            </td>--}}
                                             <td class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap">
                                                 <span class="business">{{ $certificate->occupancy_type }}</span>
 
@@ -122,10 +124,13 @@
                                             <td x-data="{ show: false }" class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap
                                             flex space-x-2">
                                                 <a id="edit-button" href="{{ route('print', $certificate->id) }}"
-                                                   class="text-cyan-700">
+                                                   class="text-cyan-700" target="_blank">
                                                     <svg class="w-6 h-6 text-blue-500" fill="none"
                                                          stroke="currentColor"
                                                          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                                                </a>
+                                                <a href="{{ route('certificates.show', $certificate->id) }}">
+                                                    <x-icon name="show"></x-icon>
                                                 </a>
                                                 <a id="edit-button" href="edit" class="text-cyan-700">
                                                     <x-icon name="edit"></x-icon>

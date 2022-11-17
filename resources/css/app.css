@@ -20,11 +20,23 @@
         @apply bg-gray-200 py-1 px-3 rounded-full border;
     }
 
-    .valid {
+    .new {
         @apply bg-green-500 text-white py-1 px-3 rounded-full border;
+    }
+
+    .renewal {
+        @apply bg-yellow-300 text-white py-1 px-3 rounded-full border;
     }
 
     .business {
         @apply bg-blue-500 text-white py-1 px-3 rounded-full border;
+    }
+
+    .form-labels {
+        @apply col-span-2 grid gap-5 font-barlowcondensed text-slate-700 p-5;
+    }
+
+    .form-fields {
+        @apply grid gap-5 p-5;
     }
 }
