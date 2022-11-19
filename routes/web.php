@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/certificates/{certificate}/ios', [InspectionOrderController::class, 'index'])->name('ios.index');
     Route::get('/certificates/{certificate}/ios/create', [InspectionOrderController::class, 'create'])->name('ios.create');
     Route::post('/certificates/{certificate}/ios', [InspectionOrderController::class, 'store'])->name('ios.store');
-    Route::get('/certificates/{certificate}/ios/{io:inspection_order_id}/print', InspectionOrderPrintController::class)->name('ios.print');
+    Route::get('/certificates/{certificate}/ios/{io}/print', InspectionOrderPrintController::class)->name('ios.print');
 });
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware('auth');

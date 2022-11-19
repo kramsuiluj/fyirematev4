@@ -59,7 +59,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-900">
+<body class="bg-gray-300">
 
     <header class="mb-5">
         <section class="bg-gray-200 mx-auto flex justify-between items-center p-2 border-b-2 border-l-2 border-r-2

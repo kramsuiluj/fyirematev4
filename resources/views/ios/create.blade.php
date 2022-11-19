@@ -53,7 +53,7 @@
                 <div class="form-fields">
                     <input name="io_number" type="number" class="text-field w-1/6" form="create-io" value="{{ old
                     ('io_number') }}">
-                    <input name="processed_at" type="date" class="text-field w-1/6" form="create-io" value="{{ old
+                    <input name="processed_at" type="date" class="text-field w-1/5" form="create-io" value="{{ old
                     ('processed_at') }}">
                     <input name="io_to" type="text" class="text-field w-2/3" form="create-io" value="{{ old
                     ('io_to') }}">

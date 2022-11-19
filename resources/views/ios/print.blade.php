@@ -132,17 +132,15 @@
 
 <div id="details"
      style="display: none"
-     data-fsic-id="{{ $certificate->fsic_id }}"
-     data-filled-date="{{ $certificate->filled_date }}"
-     data-applicant="{{ $certificate->applicant->fullname() }}"
-     data-description="{{ $certificate->description }}"
-     data-valid-until="{{ $certificate->valid_until }}"
-     data-amount="{{ $certificate->payment->amount }}"
-     data-or-number="{{ $certificate->payment->or_number }}"
-     data-payment-date="{{ $certificate->payment->date }}"
-     data-chief="{{ $certificate->chief }}"
-     data-marshal="{{ $certificate->marshal }}"
-     data-establishment="{{ $certificate->applicant->establishment }}"
+     data-io-number="{{ $io->io_number }}"
+     data-processed-at="{{ $io->processed_at }}"
+     data-io-to="{{ $certificate->applicant->fullname() }}"
+     data-proceed="{{ $certificate->description }}"
+     data-purpose="{{ $certificate->valid_until }}"
+     data-duration="{{ $certificate->payment->amount }}"
+     data-remarks="{{ $certificate->payment->or_number }}"
+     data-chief="{{ $certificate->payment->date }}"
+     data-marshal="{{ $certificate->chief }}"
 >
 </div>
 
@@ -161,6 +159,8 @@
     let textContent = document.getElementById('textContent');
     const details = document.getElementById('details').dataset;
     const elements = JSON.parse(JSON.stringify(details));
+
+    console.log(details);
 
     const positions = {
         applicant: {
