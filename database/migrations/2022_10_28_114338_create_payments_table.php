@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('certificate_id')->constrained('certificates', 'id');
+            $table->foreignId('certificate_id')->constrained('certificates', 'id')->cascadeOnDelete();
             $table->double('amount');
             $table->string('or_number')->unique();
             $table->timestamp('date');

@@ -187,6 +187,9 @@
                 @endif
             @endif
         </x-containers.content>
+        <div class="w-11/12 mx-auto">
+            {{ $heads->links() }}
+        </div>
     </x-containers.main>
 
     @include('_flash')

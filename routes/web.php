@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/certificates/create', [CertificateController::class, 'create'])->name('certificates.create');
     Route::get('/certificates/{certificate}', [CertificateController::class, 'show'])->name('certificates.show');
     Route::post('/certificates/store', [CertificateController::class, 'store'])->name('certificates.store');
+    Route::delete('/certificates/{certificate}', [CertificateController::class, 'destroy'])->name('certificates.destroy');
 
     Route::get('/certificates/{certificate}/ios', [InspectionOrderController::class, 'index'])->name('ios.index');
     Route::get('/certificates/{certificate}/ios/create', [InspectionOrderController::class, 'create'])->name('ios.create');

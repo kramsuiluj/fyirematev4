@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('certificate_id')->constrained('certificates', 'id');
+            $table->foreignId('certificate_id')->constrained('certificates', 'id')->cascadeOnDelete();
             $table->string('establishment');
             $table->string('firstname');
             $table->string('middlename');

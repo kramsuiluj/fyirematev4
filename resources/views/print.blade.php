@@ -59,7 +59,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-300">
+<body class="bg-gray-900">
 
     <header class="mb-5">
         <section class="bg-gray-200 mx-auto flex justify-between items-center p-2 border-b-2 border-l-2 border-r-2
@@ -123,8 +123,20 @@
             </div>
 
             <div class="flex space-x-1">
-                <input type="text" id="x-pos" class="border w-20 text-field h-8">
-                <input type="text" id="y-pos" class="border w-20 text-field h-8">
+                <div class="flex">
+                    <span class="inline-flex items-center px-3 text-sm text-white bg-gray-900 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        X
+                      </span>
+                    <input type="text" id="x-pos" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-44 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="elonmusk">
+                </div>
+                <div class="flex">
+                    <span class="inline-flex items-center px-3 text-sm text-white bg-gray-900 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Y
+                      </span>
+                    <input type="text" id="y-pos" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-44 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="elonmusk">
+                </div>
+{{--                <input type="text" id="x-pos" class="border w-20 text-field h-8">--}}
+{{--                <input type="text" id="y-pos" class="border w-20 text-field h-8">--}}
                 <button id="save" class="bg-green-500 text-white py-1 px-4 rounded font-semibold">SAVE</button>
             </div>
         </section>

@@ -10,7 +10,7 @@ class HeadController extends Controller
     public function index()
     {
         return view('admin.heads.index', [
-            'heads' => Head::latest()->get(),
+            'heads' => Head::latest()->simplePaginate(5),
             'heads_filter' => Head::latest()
                 ->filter(request(['filter']))
                 ->get()

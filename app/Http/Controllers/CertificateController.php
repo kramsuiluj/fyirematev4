@@ -20,7 +20,7 @@ class CertificateController extends Controller
     public function index()
     {
         return view('certificates.index', [
-            'certificates' => Certificate::all()
+            'certificates' => Certificate::latest()->simplePaginate(5)
         ]);
     }
 
@@ -85,5 +85,12 @@ class CertificateController extends Controller
         ]);
 
         return redirect(route('certificates.index'))->with('success', 'Application was processed successfully.');
+    }
+
+    public function destroy(Certificate $certificate)
+    {
+        $certificate->delete();
+
+        return redirect(route('certificates.index'))->with('success', 'The selected certificate has been successfully deleted.');
     }
 }
