@@ -31,6 +31,16 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('!password')
         ]);
 
+        $endUser = User::create([
+            'username' => 'jdoe123',
+            'firstname' => 'John',
+            'middlename' => 'Smith',
+            'lastname' => 'Doe',
+            'position' => 'Administrative Aide',
+            'is_admin' => false,
+            'password' => bcrypt('!password')
+        ]);
+
         $chiefs = Head::factory(5)->create([
             'position' => 'Chief'
         ]);
@@ -41,6 +51,7 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 0; $i < 5; $i++) {
             $certificate = Certificate::create([
+                'user_id' => $endUser->id,
                 'fsic_id' => 87974 + $i,
                 'filled_date' => Carbon::now(),
                 'occupancy_type' => rand(0, 1) ? 'Private' : 'Business',

@@ -127,16 +127,14 @@
                     <span class="inline-flex items-center px-3 text-sm text-white bg-gray-900 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         X
                       </span>
-                    <input type="text" id="x-pos" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-44 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="elonmusk">
+                    <input type="text" id="x-pos" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-44 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="X Position">
                 </div>
                 <div class="flex">
                     <span class="inline-flex items-center px-3 text-sm text-white bg-gray-900 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Y
                       </span>
-                    <input type="text" id="y-pos" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-44 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="elonmusk">
+                    <input type="text" id="y-pos" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-44 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Y Position">
                 </div>
-{{--                <input type="text" id="x-pos" class="border w-20 text-field h-8">--}}
-{{--                <input type="text" id="y-pos" class="border w-20 text-field h-8">--}}
                 <button id="save" class="bg-green-500 text-white py-1 px-4 rounded font-semibold">SAVE</button>
             </div>
         </section>
@@ -155,11 +153,13 @@
          data-chief="{{ $certificate->chief }}"
          data-marshal="{{ $certificate->marshal }}"
          data-establishment="{{ $certificate->applicant->establishment }}"
+         data-others="{{ $certificate->others }}"
     >
     </div>
 
     <div id="page" class="bg-white relative mx-auto justify-between outline outline-gray-400 box-border"
-         data-size="A4"></div>
+         data-size="A4">
+    </div>
 
     <script>
         let active;
@@ -278,6 +278,36 @@
             paymentDate.innerText = formatDate(paymentDate.innerText);
             paymentDate.style.top = '630px';
             paymentDate.style.left = '130px';
+        }
+
+        if (document.getElementById('others')) {
+            if (document.getElementById('others').innerText != "") {
+                let others = document.getElementById('others');
+                others.style.top = '230px';
+                others.style.left = '260px';
+
+                let img = document.createElement('div');
+                img.id = 'testImage';
+                img.classList.add('draggable', 'ui-widget-content', 'whitespace-nowrap');
+                img.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+                page.append(img);
+
+                $(() => {
+                    $('#testImage').draggable({
+                        containment: '#page',
+                        scroll: false,
+                        start: (e) => {
+                            active = e.target;
+                        },
+                        drag: (e) => {
+                            xPos.value = Math.round(e.target.getBoundingClientRect().left - page.getBoundingClientRect().left);
+                            yPos.value = Math.round(e.target.getBoundingClientRect().top - page.getBoundingClientRect().top);
+                        }
+                    });
+                });
+            }
+
+
         }
 
         function formatDate(element) {

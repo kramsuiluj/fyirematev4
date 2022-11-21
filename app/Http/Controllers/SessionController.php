@@ -33,7 +33,12 @@ class SessionController extends Controller
 
         session()->regenerate();
 
-        return redirect(route('dashboard'))->with('success', 'Welcome ' . ucwords($credentials['username']) . '!');
+        if (auth()->user()->is_admin) {
+            return redirect(route('dashboard'))->with('success', 'Welcome ' . ucwords($credentials['username']) . '!');
+        }
+
+        return redirect(route('users.dashboard'))->with('success', 'Welcome ' . ucwords($credentials['username']) . '!');
+
     }
 
     public function destroy(): Redirector|Application|RedirectResponse

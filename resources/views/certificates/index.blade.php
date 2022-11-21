@@ -130,7 +130,7 @@
                                                        class="text-green-500" title="Show Certificate Details">
                                                         <x-icon name="show"></x-icon>
                                                     </a>
-                                                    <a id="edit-button" href="edit" class="text-cyan-700"
+                                                    <a id="edit-button" href="{{ route('certificate.edit', $certificate->id) }}" class="text-cyan-700"
                                                        title="Edit Certificate Details">
                                                         <x-icon name="edit"></x-icon>
                                                     </a>
@@ -162,9 +162,9 @@
                                                                                 </svg>
                                                                             </div>
                                                                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                                                                <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Delete personnel</h3>
+                                                                                <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Delete Certificate</h3>
                                                                                 <div class="mt-2">
-                                                                                    <p class="text-sm text-gray-500">Are you sure you want to delete this personnel?</p>
+                                                                                    <p class="text-sm text-gray-500">Are you sure you want to delete this Certificate?</p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

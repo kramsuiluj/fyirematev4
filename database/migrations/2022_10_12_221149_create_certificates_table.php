@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users', 'id');
             $table->string('fsic_id')->unique();
             $table->timestamp('filled_date');
             $table->enum('occupancy_type', ['Business', 'Private']);

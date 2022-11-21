@@ -37,6 +37,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        Route::bind('io', function ($value) {
+            return InspectionOrder::where('id', $value)->firstOrFail();
+        });
     }
 
     /**

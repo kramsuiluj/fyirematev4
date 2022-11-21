@@ -42,4 +42,11 @@ class InspectionOrderController extends Controller
 
         return redirect(route('ios.index', $certificate->id));
     }
+
+    public function destroy(Certificate $certificate, InspectionOrder $inspectionOrder)
+    {
+        $inspectionOrder->delete();
+
+        return redirect(route('ios.index', $certificate->id))->with('success', 'You have successfully deleted the Inspection Order you selected.');
+    }
 }

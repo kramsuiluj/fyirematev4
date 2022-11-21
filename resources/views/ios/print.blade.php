@@ -123,8 +123,18 @@
         </div>
 
         <div class="flex space-x-1">
-            <input type="text" id="x-pos" class="border w-20 text-field h-8">
-            <input type="text" id="y-pos" class="border w-20 text-field h-8">
+            <div class="flex">
+                    <span class="inline-flex items-center px-3 text-sm text-white bg-gray-900 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        X
+                      </span>
+                <input type="text" id="x-pos" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-44 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="X Position">
+            </div>
+            <div class="flex">
+                    <span class="inline-flex items-center px-3 text-sm text-white bg-gray-900 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Y
+                      </span>
+                <input type="text" id="y-pos" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-44 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Y Position">
+            </div>
             <button id="save" class="bg-green-500 text-white py-1 px-4 rounded font-semibold">SAVE</button>
         </div>
     </section>
@@ -135,12 +145,12 @@
      data-io-number="{{ $io->io_number }}"
      data-processed-at="{{ $io->processed_at }}"
      data-io-to="{{ $certificate->applicant->fullname() }}"
-     data-proceed="{{ $certificate->description }}"
-     data-purpose="{{ $certificate->valid_until }}"
-     data-duration="{{ $certificate->payment->amount }}"
-     data-remarks="{{ $certificate->payment->or_number }}"
-     data-chief="{{ $certificate->payment->date }}"
-     data-marshal="{{ $certificate->chief }}"
+     data-proceed="{{ $io->proceed }}"
+     data-purpose="{{ $io->purpose }}"
+     data-duration="{{ $io->duration }}"
+     data-remarks="{{ $io->remarks }}"
+     data-chief="{{ $io->chief }}"
+     data-marshal="{{ $certificate->marshal }}"
 >
 </div>
 
@@ -159,8 +169,6 @@
     let textContent = document.getElementById('textContent');
     const details = document.getElementById('details').dataset;
     const elements = JSON.parse(JSON.stringify(details));
-
-    console.log(details);
 
     const positions = {
         applicant: {
@@ -199,73 +207,58 @@
         });
     }
 
-    if (document.getElementById('fsicId')) {
-        let fsicId = document.getElementById('fsicId');
-        fsicId.style.top = '150px';
-        fsicId.style.left = '150px';
+    if (document.getElementById('processedAt')) {
+        let processedAt = document.getElementById('processedAt');
+        processedAt.style.top = '220px';
+        processedAt.style.left = '550px';
     }
 
-    if (document.getElementById('filledDate')) {
-        let filledDate = document.getElementById('filledDate');
-        filledDate.innerText = formatDate(filledDate.innerText);
-        filledDate.style.top = '150px';
-        filledDate.style.left = '550px';
+    if (document.getElementById('ioNumber')) {
+        let ioNumber = document.getElementById('ioNumber');
+        ioNumber.style.top = '250px';
+        ioNumber.style.left = '120px';
     }
 
-    if (document.getElementById('establishment')) {
-        let establishment = document.getElementById('establishment');
-        establishment.style.top = '300px';
-        establishment.style.left = '325px';
+    if (document.getElementById('ioTo')) {
+        let ioTo = document.getElementById('ioTo');
+        ioTo.style.top = '330px';
+        ioTo.style.left = '290px';
     }
 
-    if (document.getElementById('applicant')) {
-        let applicant = document.getElementById('applicant');
-        applicant.style.top = positions.applicant.y;
-        applicant.style.left = positions.applicant.x;
+    if (document.getElementById('proceed')) {
+        let proceed = document.getElementById('proceed');
+        proceed.style.top = '380px';
+        proceed.style.left = '290px';
     }
 
-    if (document.getElementById('description')) {
-        let description = document.getElementById('description');
-        description.style.top = '500px';
-        description.style.left = '500px';
+    if (document.getElementById('purpose')) {
+        let purpose = document.getElementById('purpose');
+        purpose.style.top = '430px';
+        purpose.style.left = '290px';
     }
 
-    if (document.getElementById('validUntil')) {
-        let validUntil = document.getElementById('validUntil');
-        validUntil.innerText = formatDate(validUntil.innerText);
-        validUntil.style.top = '540px';
-        validUntil.style.left = '550px';
+    if (document.getElementById('duration')) {
+        let duration = document.getElementById('duration');
+        duration.style.top = '480px';
+        duration.style.left = '290px';
+    }
+
+    if (document.getElementById('remarks')) {
+        let remarks = document.getElementById('remarks');
+        remarks.style.top = '530px';
+        remarks.style.left = '290px';
     }
 
     if (document.getElementById('chief')) {
         let chief = document.getElementById('chief');
-        chief.style.top = '620px';
-        chief.style.left = '530px';
+        chief.style.top = '680px';
+        chief.style.left = '80px';
     }
 
     if (document.getElementById('marshal')) {
         let marshal = document.getElementById('marshal');
-        marshal.style.top = '700px';
-        marshal.style.left = '530px';
-    }
-
-    if (document.getElementById('amount')) {
-        let amount = document.getElementById('amount');
-        amount.style.top = '590px';
-        amount.style.left = '150px';
-    }
-
-    if (document.getElementById('orNumber')) {
-        let orNumber = document.getElementById('orNumber');
-        orNumber.style.top = '610px';
-        orNumber.style.left = '150px';
-    }
-
-    if (document.getElementById('paymentDate')) {
-        let paymentDate = document.getElementById('paymentDate');
-        paymentDate.innerText = formatDate(paymentDate.innerText);
-        paymentDate.style.top = '630px';
-        paymentDate.style.left = '130px';
+        marshal.style.top = '680px';
+        marshal.style.left = '480px';
     }
 
     function formatDate(element) {

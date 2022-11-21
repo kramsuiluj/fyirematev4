@@ -21,23 +21,6 @@
 
                                 <span>Add Personnel</span>
                             </a>
-
-                            @if (!count($heads) == 0)
-                                <button
-                                    @click="show = !show"
-                                    @click.away="show = false"
-                                    class="text-white bg-gray-600 hover:bg-blue-800 focus:ring-4 focus:outline-none
-                        focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center flex justify-between
-                        items-center"
-                                    type="button"
-                                >
-                        <span id="selected-position">
-                            {{ request('filter') ?? 'Filter' }}
-                        </span>
-
-                                    <x-icon name="dropdown-arrow"/>
-                                </button>
-                            @endif
                         </div>
 
                         <!-- Dropdown menu -->
