@@ -82,9 +82,6 @@
                                             <thead class="border-b">
                                             <tr class="font-barlow text-slate-700">
                                                 <th scope="col" class="text-sm px-6 py-4 text-left">
-                                                    #
-                                                </th>
-                                                <th scope="col" class="text-sm px-6 py-4 text-left">
                                                     Position
                                                 </th>
                                                 <th scope="col" class="text-sm px-6 py-4 text-left">
@@ -102,9 +99,6 @@
                                             @foreach($heads as $head)
                                                 <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100
                                     text-left font-barlowcondensed">
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700">
-                                                        {{ $head->id }}
-                                                    </td>
                                                     <td class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap">
                                                         {{ $head->position }}
                                                     </td>

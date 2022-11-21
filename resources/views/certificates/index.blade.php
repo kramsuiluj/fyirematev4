@@ -91,7 +91,7 @@
                                             <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100
                                     text-left font-barlowcondensed">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700">
-                                                    {{ $certificate->id }}
+                                                    {{ $loop->iteration }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700">
                                                 <span class="{{ $certificate->issuance_type == 'New' ? 'new' : 'renewal' }}">
@@ -126,17 +126,17 @@
                                                        title="Inspection Orders">
                                                         <x-icon name="io"></x-icon>
                                                     </a>
-                                                    <a href="{{ route('certificates.show', $certificate->id) }}"
-                                                       class="text-green-500" title="Show Certificate Details">
-                                                        <x-icon name="show"></x-icon>
-                                                    </a>
+{{--                                                    <a href="{{ route('certificates.show', $certificate->id) }}"--}}
+{{--                                                       class="text-green-500" title="Show Certificate Details">--}}
+{{--                                                        <x-icon name="show"></x-icon>--}}
+{{--                                                    </a>--}}
                                                     <a id="edit-button" href="{{ route('certificate.edit', $certificate->id) }}" class="text-cyan-700"
                                                        title="Edit Certificate Details">
                                                         <x-icon name="edit"></x-icon>
                                                     </a>
-                                                    <a href="" title="Renew Certificate">
-                                                        <x-icon name="renew"></x-icon>
-                                                    </a>
+{{--                                                    <a href="" title="Renew Certificate">--}}
+{{--                                                        <x-icon name="renew"></x-icon>--}}
+{{--                                                    </a>--}}
                                                     <a @click="show = !show" id="delete-button" href="#" class="text-red-700"
                                                        title="Delete Certificate"
                                                     >

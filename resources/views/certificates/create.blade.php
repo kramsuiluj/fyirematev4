@@ -253,6 +253,7 @@
 
         <form action="{{ route('certificates.store') }}" method="POST" id="fill-certificate">
             @csrf
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
             <input type="hidden" name="chief" value="" id="chief">
             <input type="hidden" name="marshal" value="" id="marshal">
         </form>

@@ -63,7 +63,7 @@
                                         <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100
                                     text-left font-barlowcondensed">
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700">
-                                                {{ $user->id }}
+                                                {{ $loop->iteration }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700">
                                                 {{ $user->username }}

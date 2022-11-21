@@ -45,9 +45,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/dashboard', UserDashboardController::class)->name('users.dashboard')->middleware('can:basic');
 
     Route::delete('/logout', [SessionController::class, 'destroy'])->name('sessions.destroy');
+    Route::get('/certificates/create', [CertificateController::class, 'create'])->name('certificates.create');
     Route::get('/certificates', [CertificateController::class, 'index'])->name('certificates.index');
     Route::get('/certificates/{certificate}', [CertificateController::class, 'show'])->name('certificates.show');
-    Route::get('/certificates/create', [CertificateController::class, 'create'])->name('certificates.create');
+
     Route::post('/certificates/store', [CertificateController::class, 'store'])->name('certificates.store');
     Route::get('/certificates/{certificate}/edit', [CertificateController::class, 'edit'])->name('certificate.edit');
     Route::patch('/certificates/{certificate}', [CertificateController::class, 'update'])->name('certificates.update');

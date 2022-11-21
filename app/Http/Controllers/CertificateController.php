@@ -55,8 +55,11 @@ class CertificateController extends Controller
             'marshal' => ['required']
         ]);
 
+
+
         $certificate = Certificate::create([
             'fsic_id' => $attributes['fsic_id'],
+            'user_id' => auth()->user()->id,
             'filled_date' => $attributes['filled_date'],
             'occupancy_type' => $attributes['occupancy_type'],
             'issuance_type' => $attributes['issuance_type'],
