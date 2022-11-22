@@ -25,4 +25,9 @@ class Certificate extends Model
     {
         return $this->hasMany(InspectionOrder::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

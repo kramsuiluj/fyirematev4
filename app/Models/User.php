@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Certificate;
 
 class User extends Authenticatable
 {
@@ -45,6 +46,11 @@ class User extends Authenticatable
     public function fullname(): string
     {
         return $this->title . ' ' . $this->firstname . ' ' . $this->middlename[0] . '. ' . $this->lastname;
+    }
+
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class);
     }
 
 }

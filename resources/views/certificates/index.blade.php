@@ -64,6 +64,9 @@
                                                 #
                                             </th>
                                             <th scope="col" class="text-sm px-6 py-4 text-left">
+                                                Processed By
+                                            </th>
+                                            <th scope="col" class="text-sm px-6 py-4 text-left">
                                                 Type
                                             </th>
                                             <th scope="col" class="text-sm px-6 py-4 text-left">
@@ -92,6 +95,9 @@
                                     text-left font-barlowcondensed">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700">
                                                     {{ $loop->iteration }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700">
+                                                    {{ $certificate->user->fullname() }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-700">
                                                 <span class="{{ $certificate->issuance_type == 'New' ? 'new' : 'renewal' }}">

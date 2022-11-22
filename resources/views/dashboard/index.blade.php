@@ -111,9 +111,6 @@
         const stats1 = Object.values(Object.assign({}, statistics1));
         const stats2 = Object.values(Object.assign({}, statistics2));
         const stats3 = Object.values(Object.assign({}, statistics3));
-        console.log(stats1);
-        console.log(stats2);
-        console.log(stats3);
 
         const allCertificates = new Chart(ctx1, {
             type: 'bar',
