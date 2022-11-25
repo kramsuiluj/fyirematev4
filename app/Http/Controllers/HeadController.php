@@ -32,7 +32,9 @@ class HeadController extends Controller
             'lastname' => ['required', 'string', 'min:2', 'max:50']
         ]);
 
-        Head::create($attributes);
+        $head = Head::create($attributes);
+
+        activity('Personnel Created')->log(auth()->user()->fullname() . ' has created a personnel: ' . $head->fullname());
 
         return redirect(route('admin.heads.index'))->with('success', 'You have successfully created a personnel.');
     }
@@ -78,12 +80,18 @@ class HeadController extends Controller
             return redirect(route('admin.heads.index'))->with('success', 'You did not update any field.');
         }
 
+        activity('Personnel Updated')->log(auth()->user()->fullname() . " has updated personnel: " . $head->fullname() . ' details.');
+
         return redirect(route('admin.heads.index'))->with('success', 'You have successfully updated the personnel details.');
     }
 
     public function destroy(Head $head)
     {
+        $name = $head->fullname();
+
         $head->delete();
+
+        activity('Personnel Deleted')->log(auth()->user()->fullname() . ' has deleted personnel: ' . $name);
 
         return redirect(route('admin.heads.index'));
     }

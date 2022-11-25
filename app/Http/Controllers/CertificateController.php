@@ -87,6 +87,8 @@ class CertificateController extends Controller
             'date' => $attributes['payment_date']
         ]);
 
+        activity('Certificate Recorded')->log(auth()->user()->fullname() . ' has added a new certificate in the records. Certificate ID: ' . $certificate->fsic_id);
+
         return redirect(route('certificates.index'))->with('success', 'Application was processed successfully.');
     }
 

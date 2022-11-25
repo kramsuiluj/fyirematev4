@@ -29,6 +29,15 @@
                         </div>
                     </section>
                 </li>
+                <li class="py-3.5 cursor-pointer px-3 {{ request()->routeIs('admin.activities.*') ? 'current-page' : ''
+                }}">
+                    <section class="flex items-center space-x-2 justify-between">
+                        <div class="flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <a href="{{ route('admin.activities.index') }}">Activity Logs</a>
+                        </div>
+                    </section>
+                </li>
             @endcan
 
             @can('basic')

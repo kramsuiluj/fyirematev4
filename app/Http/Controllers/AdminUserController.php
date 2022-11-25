@@ -48,7 +48,9 @@ class AdminUserController extends Controller
 
         $attributes['password'] = bcrypt($attributes['password']);
 
-        User::create($attributes);
+        $user = User::create($attributes);
+
+        activity('User Created')->log(auth()->user()->fullname() . ' has created a user: ' . $user->fullname());
 
         return redirect(route('admin.users.index'));
     }
@@ -98,12 +100,18 @@ class AdminUserController extends Controller
 
         $user->update($updated);
 
+        activity('User Updated')->log(auth()->user()->fullname() . " has updated user: " . $user->fullname()) . ' details.';
+
         return redirect(route('admin.users.index'))->with('success', 'The user details has been updated successfully.');
     }
 
     public function destroy(User $user)
     {
+        $name = $user->fullname();
+
         $user->delete();
+
+        activity('User Deleted')->log(auth()->user()->fullname() . ' has deleted user: ' . $name);
 
         return redirect(route('admin.users.index'));
     }

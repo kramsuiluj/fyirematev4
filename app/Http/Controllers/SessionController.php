@@ -34,10 +34,12 @@ class SessionController extends Controller
         session()->regenerate();
 
         if (auth()->user()->is_admin) {
+            activity('login')->log(auth()->user()->fullname() . ' has logged in.');
+
             return redirect(route('dashboard'))->with('success', 'Welcome ' . ucwords($credentials['username']) . '!');
         }
 
-        activity('login')->log(auth()->user()->fullname() . 'has logged in.');
+        activity('login')->log(auth()->user()->fullname() . ' has logged in.');
 
         return redirect(route('users.dashboard'))->with('success', 'Welcome ' . ucwords($credentials['username']) . '!');
 
@@ -45,12 +47,7 @@ class SessionController extends Controller
 
     public function destroy(): Redirector|Application|RedirectResponse
     {
-        if (auth()->user()) {
-            if (auth()->user()->is_admin == false) {
-                activity('logout')->log(auth()->user()->fullname() . 'has logged out.');
-            }
-        }
-
+        activity('logout')->log(auth()->user()->fullname() . ' has logged out.');
 
         auth()->logout();
 

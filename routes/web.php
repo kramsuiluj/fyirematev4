@@ -10,7 +10,8 @@ use App\Http\Controllers\{
     PrintController,
     InspectionOrderController,
     InspectionOrderPrintController,
-    UserDashboardController
+    UserDashboardController,
+    ActivityController
 };
 
 Route::group(['middleware' => 'guest'], function () {
@@ -29,6 +30,8 @@ Route::group(['middleware' => 'can:admin'], function () {
             Route::patch('/heads/{head}', [HeadController::class, 'update'])->name('update');
             Route::delete('/heads/{head}', [HeadController::class, 'destroy'])->name('destroy');
         });
+
+        Route::get('/logs', [ActivityController::class, 'index'])->name('activities.index');
 
         Route::group(['as' => 'users.'], function () {
             Route::get('/users', [AdminUserController::class, 'index'])->name('index');
