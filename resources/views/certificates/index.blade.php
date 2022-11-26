@@ -20,22 +20,6 @@
                                 <span>Add Certificate</span>
                             </a>
                         </div>
-
-                        <!-- Dropdown menu -->
-                        <div x-show="show" class="absolute z-10 bg-white rounded divide-y divide-gray-100 shadow
-                    mt-2 w-full">
-                            <ul class="py-1 text-sm text-gray-700 text-left">
-                                <li class="block py-2 px-4 hover:bg-gray-100 cursor-pointer border-b" @click="select">
-                                    <a href="{{ route('admin.heads.index') }}">All</a>
-                                </li>
-                                <li class="block py-2 px-4 hover:bg-gray-100 cursor-pointer border-b" @click="select">
-                                    <a href="{{ request()->url() }}?filter=Chief">Chief</a>
-                                </li>
-                                <li class="block py-2 px-4 hover:bg-gray-100 cursor-pointer" @click="select">
-                                    <a href="{{ request()->url() }}?filter=Marshal">Marshal</a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </x-slot>

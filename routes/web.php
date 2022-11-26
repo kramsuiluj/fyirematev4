@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     ActivityController,
     ChiefController,
     MarshalController,
+    LocationController,
 };
 
 Route::group(['middleware' => 'guest'], function () {
@@ -59,6 +60,9 @@ Route::group(['middleware' => 'can:admin'], function () {
             Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('destroy');
         });
     });
+
+    Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
+    Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -84,4 +88,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/certificates/{certificate}/print', PrintController::class)->name('print');
 
-Route::view('/test', 'test');
+Route::get('/test', function () {
+    dd(\Yajra\Address\Entities\Region::all()->pluck('name'));
+});
