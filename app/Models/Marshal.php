@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Marshal extends Model
+{
+    use HasFactory;
+
+    public function fullname() {
+        return $this->title . ' ' . $this->firstname . ' ' . $this->middlename[0] . '. ' . $this->lastname;
+    }
+}

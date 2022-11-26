@@ -183,7 +183,9 @@
                     <label for="chief" style="font-weight: 500">RECOMMEND APPROVAL</label>
                     <div x-data="{ show: false }" class="w-full relative">
                         <button @click="show = !show" @click.away="show = false" class="dropdown-trigger" type="button">
-                            <span id="chief_label" class="font-barlowcondensed">Select Chief</span>
+                            <span id="chief_label" class="font-barlowcondensed">{{ \App\Models\Chief::where
+                            ('is_default', true)->first()->fullname() ?? 'Select Chief'
+                            }}</span>
 
                             <x-icon name="down-arrow"></x-icon>
                         </button>
@@ -218,7 +220,10 @@
                     <label for="chief" style="font-weight: 500">APPROVED</label>
                     <div x-data="{ show: false }" class="w-full relative">
                         <button @click="show = !show" @click.away="show = false" class="dropdown-trigger" type="button">
-                            <span id="marshal_label" class="font-barlowcondensed">Select Marshal</span>
+                            <span id="marshal_label" class="font-barlowcondensed">
+                                {{ \App\Models\Marshal::where('is_default', true)->first()->fullname() ?? 'Select
+                                Marshal' }}
+                            </span>
 
                             <x-icon name="down-arrow"></x-icon>
                         </button>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicant;
 use App\Models\Certificate;
+use App\Models\Chief;
 use App\Models\Head;
+use App\Models\Marshal;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -27,8 +29,8 @@ class CertificateController extends Controller
     public function create()
     {
         return view('certificates.create', [
-            'chiefs' => Head::where('position', 'Chief')->get(),
-            'marshals' => Head::where('position', 'Marshal')->get()
+            'chiefs' => Chief::latest()->get(),
+            'marshals' => Marshal::latest()->get()
         ]);
     }
 
