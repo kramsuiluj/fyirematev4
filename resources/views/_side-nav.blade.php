@@ -111,6 +111,16 @@
                 </section>
             </li>
 
+                <li class="py-3.5 cursor-pointer px-3 {{ request()->routeIs('establishments.*') ? 'current-page' : '' }}">
+                    <section class="flex items-center space-x-2 justify-between">
+                        <div class="flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            <a href="{{ route('establishments.index') }}">Establishments</a>
+                        </div>
+                    </section>
+                </li>
+
+
             <li class="py-1.5 cursor-pointer px-3">
                 <section class="flex items-center space-x-2 justify-between">
                     <div class="flex items-center space-x-2">

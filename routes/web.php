@@ -15,6 +15,8 @@ use App\Http\Controllers\{
     ChiefController,
     MarshalController,
     LocationController,
+    EstablishmentController,
+    EstablishmentImportController,
 };
 
 Route::group(['middleware' => 'guest'], function () {
@@ -85,6 +87,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/certificates/{certificate}/ios', [InspectionOrderController::class, 'store'])->name('ios.store');
     Route::get('/certificates/{certificate}/ios/{io}/print', InspectionOrderPrintController::class)->name('ios.print');
     Route::delete('/certificates/{certificate}/ios/{io}', [InspectionOrderController::class, 'destroy'])->name('ios.destroy');
+
+    Route::get('/establishments', [EstablishmentController::class, 'index'])->name('establishments.index');
+    Route::get('/establishments/create', [EstablishmentController::class, 'create'])->name('establishments.create');
+    Route::post('/establishments', [EstablishmentController::class, 'store'])->name('establishments.store');
+    Route::get('/establishments/{establishment}', [EstablishmentController::class, 'show'])->name('establishments.show');
+
+
+    Route::get('/establishments/import', [EstablishmentImportController::class, 'import'])->name('establishments.import');
+    Route::post('/establishments/upload', [EstablishmentImportController::class, 'upload'])->name('establishments.upload');
+
+    Route::delete('/establishments/{establishment}', [EstablishmentController::class, 'destroy'])->name('establishments.destroy');
+
 });
 
 Route::get('/certificates/{certificate}/print', PrintController::class)->name('print');
