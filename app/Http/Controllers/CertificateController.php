@@ -6,9 +6,12 @@ use App\Models\Applicant;
 use App\Models\Certificate;
 use App\Models\Chief;
 use App\Models\Head;
+use App\Models\Location;
 use App\Models\Marshal;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Yajra\Address\Entities\Barangay;
+use Yajra\Address\Entities\City;
 
 class CertificateController extends Controller
 {
@@ -30,13 +33,16 @@ class CertificateController extends Controller
     {
         return view('certificates.create', [
             'chiefs' => Chief::latest()->get(),
-            'marshals' => Marshal::latest()->get()
+            'marshals' => Marshal::latest()->get(),
+            'barangays' => Barangay::where('city_id', Location::first()->city)->get()
         ]);
     }
 
 
     public function store()
     {
+//        dd(request()->all());
+
         $attributes = request()->validate([
             'fsic_id' => ['required', 'numeric'],
             'filled_date' => ['required'],
@@ -49,6 +55,7 @@ class CertificateController extends Controller
             'middlename' => ['required'],
             'lastname' => ['required'],
             'address' => ['required'],
+            'barangay' => ['required'],
             'postal_code' => ['required', 'numeric'],
             'amount' => ['required', 'numeric'],
             'or_number' => ['required', 'numeric'],
@@ -57,7 +64,9 @@ class CertificateController extends Controller
             'marshal' => ['required']
         ]);
 
+        $attributes['address'] = $attributes['address'] . ', ' . $attributes['barangay'] . ', ' . City::firstWhere('province_id', Location::first()->province)->name;
 
+        dd($attributes['address']);
 
         $certificate = Certificate::create([
             'fsic_id' => $attributes['fsic_id'],

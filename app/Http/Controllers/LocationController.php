@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use Illuminate\Http\Request;
+use Yajra\Address\Entities\Barangay;
 use Yajra\Address\Entities\City;
 use Yajra\Address\Entities\Province;
 use Yajra\Address\Entities\Region;
@@ -12,7 +13,10 @@ class LocationController extends Controller
 {
     public function index()
     {
-        return view('locations.index');
+        return view('locations.index', [
+            'location' => Location::first(),
+            'barangays' => Barangay::where('city_id', Location::first()->city)->get()
+        ]);
     }
 
     public function create()

@@ -31,7 +31,30 @@
         </x-containers.sub-header>
 
         <x-containers.content>
+            <section>
+                <div>
+                    <p class="p-2 font-barlow text-slate-700" style="font-weight: 500">
+                        The system location is set to {{ \Yajra\Address\Entities\Region::firstWhere('region_id',
+                        $location->region)->name }}, {{ \Yajra\Address\Entities\Province::firstWhere('province_id',
+                        $location->province)->name }}, {{ \Yajra\Address\Entities\City::firstWhere('city_id',
+                        $location->city)->name }}.
+                    </p>
+                </div>
+            </section>
+        </x-containers.content>
 
+        <x-containers.content>
+            <section>
+                <div>
+                    <h2 class="p-2 text-white border-b bg-gray-900 rounded">List of Barangays</h2>
+                </div>
+
+                <ul class="grid grid-cols-6 mt-2 p-2 text-slate-700">
+                    @foreach($barangays as $barangay)
+                        <li class="px-5 py-1">{{ $barangay->name }}</li>
+                    @endforeach
+                </ul>
+            </section>
         </x-containers.content>
 
     </x-containers.main>
