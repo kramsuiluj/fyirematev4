@@ -63,6 +63,7 @@ Route::group(['middleware' => 'can:admin'], function () {
 
     Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
     Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
+    Route::post('/locations', [LocationController::class, 'store'])->name('locations.store');
 });
 
 Route::group(['middleware' => 'auth'], function () {

@@ -75,7 +75,7 @@
                         </div>
                     </section>
                 </li>
-                <li class="py-3.5 cursor-pointer px-3 {{ request()->routeIs('admin.activities.*') ? 'current-page' : ''
+                <li class="py-3.5 cursor-pointer px-3 {{ request()->routeIs('locations.*') ? 'current-page' : ''
                 }}">
                     <section class="flex items-center space-x-2 justify-between">
                         <div class="flex items-center space-x-2">
