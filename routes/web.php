@@ -88,6 +88,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/certificates/{certificate}/ios/{io}/print', InspectionOrderPrintController::class)->name('ios.print');
     Route::delete('/certificates/{certificate}/ios/{io}', [InspectionOrderController::class, 'destroy'])->name('ios.destroy');
 
+    Route::get('/establishments/import', [EstablishmentImportController::class, 'import'])->name('establishments.import');
+
     Route::get('/establishments', [EstablishmentController::class, 'index'])->name('establishments.index');
     Route::get('/establishments/create', [EstablishmentController::class, 'create'])->name('establishments.create');
     Route::post('/establishments', [EstablishmentController::class, 'store'])->name('establishments.store');

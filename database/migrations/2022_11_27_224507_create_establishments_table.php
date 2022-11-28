@@ -31,8 +31,8 @@ return new class extends Migration
             $table->string('remarks')->nullable();
             $table->string('inspection_date')->nullable();
             $table->string('io_number')->nullable();
-            $table->string('realty_tax')->nullable();
-            $table->double('amount')->nullable();
+            $table->string('realty_tax')->default(0)->nullable();
+            $table->double('amount')->default(0)->nullable();
             $table->timestamps();
         });
     }
