@@ -63,20 +63,20 @@
 
     <header class="mb-5">
         <section class="bg-gray-200 mx-auto flex justify-between items-center p-2 border-b-2 border-l-2 border-r-2
-        border-gray-400 rounded-bl rounded-br">
+        border-gray-400">
             <div x-data="{ show: false }" class="flex items-center space-x-3">
                 <button id="print" class="flex space-x-1 items-center bg-blue-500 text-white py-1 px-4 rounded">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
 
-                    <span>Print</span>
+                    <span class="text-sm">Print</span>
                 </button>
 
                 <button @click="show = !show" class="flex space-x-1 items-center bg-orange-500
                 text-white py-1 px-4
                 rounded">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
 
-                    <span>Add Element</span>
+                    <span class="text-sm">Add Element</span>
                 </button>
 
                 <div x-show="show" style="display: none" class="relative z-10" aria-labelledby="modal-title"
@@ -122,23 +122,31 @@
 
             </div>
 
-            <div class="flex space-x-1">
-                <div class="flex">
+            <div class="flex space-x-1 items-center">
+                <div class="flex w-44 h-8">
                     <span class="inline-flex items-center px-3 text-sm text-white bg-gray-900 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         X
                       </span>
                     <input type="text" id="x-pos" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-44 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="X Position">
                 </div>
-                <div class="flex">
+                <div class="flex w-44 h-8">
                     <span class="inline-flex items-center px-3 text-sm text-white bg-gray-900 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Y
                       </span>
                     <input type="text" id="y-pos" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-44 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Y Position">
                 </div>
-                <button id="save" class="bg-green-500 text-white py-1 px-4 rounded font-semibold">SAVE</button>
+                <button id="save" class="bg-green-500 text-white px-4 rounded font-semibold text-sm h-8">SAVE</button>
             </div>
         </section>
     </header>
+
+    <div class="absolute right-0 mr-44">
+        <ul class="flex flex-col text-center space-y-2 text-white">
+            <li class="bg-blue-500 px-3 px-0.5 rounded cursor-pointer">S</li>
+            <li class="bg-orange-500 border-2 px-0.5 border-white rounded cursor-pointer">A4</li>
+            <li class="bg-pink-500 rounded px-0.5 cursor-pointer">L</li>
+        </ul>
+    </div>
 
     <div id="details"
          style="display: none"
@@ -354,7 +362,7 @@
             let newElement = document.createElement('div');
             newElement.id = id.toString();
             id++;
-            newElement.classList.add('draggable', 'ui-widget-content', 'whitespace-nowrap');
+            newElement.classList.add('draggable', 'ui-widget-content', 'whitespace-nowrap', 'cursor-move');
             newElement.innerText = textContent.value;
 
             page.append(newElement);
