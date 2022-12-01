@@ -5,8 +5,11 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Applicant;
 use App\Models\Certificate;
+use App\Models\Chief;
 use App\Models\Fsic;
 use App\Models\Head;
+use App\Models\Location;
+use App\Models\Marshal;
 use App\Models\Payment;
 use App\Models\User;
 use Carbon\Carbon;
@@ -81,34 +84,15 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        Location::create([
+            'region' => '05',
+            'province' => '0505',
+            'city' => '050508',
+            'postal_code' => 4504
+        ]);
 
-//
-//        $fsic = Fsic::create([
-//            'date' => Carbon::now(),
-//            'occupancy' => 'Private',
-//            'issuance' => 'New',
-//            'establishment' => 'Test Establishment',
-//            'description' => 'This is an example of a description.',
-//            'expiration' => Carbon::tomorrow(),
-//            'chief' => Head::firstWhere('position', 'Chief')->fullname(),
-//            'marshal' => Head::firstWhere('position', 'Marshal')->fullname(),
-//        ]);
-//
-//        Payment::create([
-//            'fsic_id' => $fsic->id,
-//            'amount' => 45.50,
-//            'or_number' => '123456',
-//            'date' => Carbon::now()
-//        ]);
-//
-//        Applicant::create([
-//            'fsic_id' => $fsic->id,
-//            'firstname' => 'John',
-//
-//            'middlename' => 'Smith',
-//            'lastname' => 'Doe'
-//        ]);
-//
-//        User::factory(5)->create();
+        Chief::factory(3)->create();
+        Marshal::factory(3)->create();
+
     }
 }

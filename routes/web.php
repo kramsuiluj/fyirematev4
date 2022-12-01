@@ -50,6 +50,7 @@ Route::group(['middleware' => 'can:admin'], function () {
         Route::get('/personnel/marshals/{marshal}/edit', [MarshalController::class, 'edit'])->name('personnel.marshals.edit');
         Route::patch('/personnel/marshals/{marshal}', [MarshalController::class, 'update'])->name('personnel.marshals.update');
         Route::patch('/personnel/marshals/{marshal}/default', [MarshalController::class, 'updateDefault'])->name('personnel.marshals.updateDefault');
+        Route::delete('/personnel/marshals/{marshal}', [MarshalController::class, 'destroy'])->name('personnel.marshals.destroy');
 
         Route::get('/logs', [ActivityController::class, 'index'])->name('activities.index');
 

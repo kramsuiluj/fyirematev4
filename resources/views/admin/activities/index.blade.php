@@ -59,5 +59,11 @@
                 </div>
             </div>
         </x-containers.content>
+
+        <div class="w-11/12 mx-auto mb-5">
+            {{ $activities->links() }}
+        </div>
     </x-containers.main>
+
+
 </x-layout>

@@ -140,8 +140,9 @@
                                 <x-icon name="down-arrow"></x-icon>
                             </button>
                             <!-- Dropdown menu -->
-                            <div x-show="show" style="display: none" class="z-10 absolute w-full bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
-                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
+                            <div x-show="show" style="display: none" class="z-10 absolute w-full bg-white rounded
+                            divide-y divide-gray-100 shadow dark:bg-gray-700">
+                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200 h-44 overflow-y-auto">
                                     @foreach ($cities as $city)
                                         <li>
                                             <a id="business" href="?{{ http_build_query(request()->except

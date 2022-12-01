@@ -43,6 +43,8 @@ class LocationController extends Controller
 
         Location::create($attributes);
 
+        activity('Location Saved')->log('The system location has been set to [' . Region::firstWhere('region_id', Location::first()->region)->name . ', ' . Province::firstWhere('province_id', Location::first()->province)->name . ', ' . City::firstWhere('city_id', Location::first()->city)->name);
+
         return redirect(route('locations.index'))->with('success', 'You have successfully set the location of the system.');
     }
 }

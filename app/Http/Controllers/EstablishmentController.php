@@ -26,13 +26,6 @@ class EstablishmentController extends Controller
         return view('establishments.create');
     }
 
-    public function destroy(Establishment $establishment)
-    {
-        $establishment->delete();
-
-        return redirect(route('establishments.index'))->with('success', 'You have successfully deleted the establishment record you selected.');
-    }
-
     public function store()
     {
         $attributes = request()->validate([
@@ -47,8 +40,22 @@ class EstablishmentController extends Controller
             'occupancy' => ['required'],
         ]);
 
-        Establishment::create($attributes);
+        $establishment = Establishment::create($attributes);
+
+        activity('Establishment Recorded')->log('An establishment record has been added to the system. Establishment ID: ' . $establishment->id);
 
         return redirect(route('establishments.index'))->with('success', 'You have successfully added an Establishment Record.');
     }
+
+    public function destroy(Establishment $establishment)
+    {
+        $id = $establishment->id;
+
+        $establishment->delete();
+
+        activity('Establishment Record Deleted')->log('An establishment record has been deleted. Establishment ID: ' . $id);
+
+        return redirect(route('establishments.index'))->with('success', 'You have successfully deleted the establishment record you selected.');
+    }
+
 }

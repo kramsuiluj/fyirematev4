@@ -66,7 +66,7 @@ class CertificateController extends Controller
 
         $attributes['address'] = $attributes['address'] . ', ' . $attributes['barangay'] . ', ' . City::firstWhere('province_id', Location::first()->province)->name;
 
-        dd($attributes['address']);
+//        dd($attributes['address']);
 
         $certificate = Certificate::create([
             'fsic_id' => $attributes['fsic_id'],
@@ -98,7 +98,7 @@ class CertificateController extends Controller
             'date' => $attributes['payment_date']
         ]);
 
-        activity('Certificate Recorded')->log(auth()->user()->fullname() . ' has added a new certificate in the records. Certificate ID: ' . $certificate->fsic_id);
+        activity('Certificate Recorded')->log('A new certificate has been added in the records. Certificate ID: ' . $certificate->fsic_id);
 
         return redirect(route('certificates.index'))->with('success', 'Application was processed successfully.');
     }
@@ -107,8 +107,8 @@ class CertificateController extends Controller
     {
         return view('certificates.edit', [
             'certificate' => $certificate,
-            'chiefs' => Head::where('position', 'Chief')->get(),
-            'marshals' => Head::where('position', 'Marshal')->get()
+            'chiefs' => Chief::latest()->get(),
+            'marshals' => Marshal::latest()->get()
         ]);
     }
 
@@ -214,12 +214,18 @@ class CertificateController extends Controller
         $certificate->applicant->update($updatedApplicant);
         $certificate->payment->update($updatedPayment);
 
+        activity('Certificate Updated')->log('A recorded certificate has been updated. Certificate ID: ' . $certificate->id);
+
         return redirect(route('certificates.index'))->with('success', 'You have successfully update the certificate you selected.');
     }
 
     public function destroy(Certificate $certificate)
     {
+        $id = $certificate->id;
+
         $certificate->delete();
+
+        activity('Certificate Deleted')->log('A certificate record has been deleted. Certificate ID: ' . $id);
 
         return redirect(route('certificates.index'))->with('success', 'The selected certificate has been successfully deleted.');
     }

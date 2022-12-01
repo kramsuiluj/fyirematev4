@@ -123,4 +123,17 @@ class MarshalController extends Controller
 
         return redirect(route('admin.personnel.marshals.index'))->with('success', 'You have successfully set the default marshal.');
     }
+
+    public function destroy(Marshal $marshal)
+    {
+        if ($marshal->is_default) {
+            return redirect(route('admin.personnel.chiefs.index'))->with('warning', 'You are trying to delete a marshal that is set to default.');
+        }
+
+        $marshal->delete();
+
+        activity('Personnel Deleted')->log('A marshal personnel has been deleted. [' . $marshal->fullname() . ']');
+
+        return redirect(route('admin.personnel.marshals.index'))->with('success', 'You have successfully deleted the personnel you selected.');
+    }
 }

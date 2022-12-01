@@ -56,24 +56,6 @@
                     </div>
                 </section>
             @else
-{{--                @if (count($heads_filter) == 0 && request('filter') == 'Marshal')--}}
-{{--                    <div class="flex items-center space-x-1 p-2">--}}
-{{--                        <div class="text-slate-500 mt-0.5">--}}
-{{--                            <x-icon name="info"></x-icon>--}}
-{{--                        </div>--}}
-{{--                        <p class="text-sm text-slate-500 font-barlow">Currently, there are no personnel with <span class="font-semibold">Marshal</span> position in the system.</p>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-
-{{--                @if (count($heads_filter) == 0 && request('filter') == 'Chief')--}}
-{{--                    <div class="flex items-center space-x-1 p-2">--}}
-{{--                        <div class="text-slate-500 mt-0.5">--}}
-{{--                            <x-icon name="info"></x-icon>--}}
-{{--                        </div>--}}
-{{--                        <p class="text-sm text-slate-500 font-barlow">Currently, there are no personnel with <span class="font-semibold">Chief</span> position in the system.</p>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-
                 @if (!count($chiefs) == 0)
                     <div class="w-full">
                         <div class="flex flex-col">
@@ -114,8 +96,6 @@
                                                         {{ date('F j, Y, g:i a', strtotime($chief->created_at)) }}
                                                     </td>
                                                     <td class="text-sm text-slate-700 px-6 py-4 whitespace-nowrap">
-
-
                                                         <form action="{{ route('admin.personnel.chiefs.updateDefault', $chief->id) }}" method="POST">
                                                             @csrf
                                                             @method('PATCH')
