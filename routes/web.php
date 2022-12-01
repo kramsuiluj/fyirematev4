@@ -18,6 +18,7 @@ use App\Http\Controllers\{
     EstablishmentController,
     EstablishmentImportController,
 };
+use Spatie\Activitylog\Models\Activity;
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [SessionController::class, 'create'])->name('sessions.create');
@@ -107,5 +108,11 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/certificates/{certificate}/print', PrintController::class)->name('print');
 
 Route::get('/test', function () {
-    dd(\Yajra\Address\Entities\Region::all()->pluck('name'));
+    activity('Test Activity')
+        ->causedBy(auth()->user())
+        ->performedOn(\App\Models\Establishment::first())
+        ->tap(function (Activity $activity) {
+            $activity->test = 'my special value';
+        }, 'test')
+        ->log('This is a test activity on activity logs.');
 });

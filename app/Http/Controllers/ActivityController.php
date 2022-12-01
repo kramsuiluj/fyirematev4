@@ -10,7 +10,7 @@ class ActivityController extends Controller
     public function index()
     {
         return view('admin.activities.index', [
-            'activities' => Activity::latest()->paginate(10)
+            'activities' => Activity::latest()->filter(request(['search']))->paginate(10)->withQueryString()
         ]);
     }
 }
