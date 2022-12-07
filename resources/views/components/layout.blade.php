@@ -32,9 +32,13 @@
             display: grid;
             place-items: center;
         }
+
+        .blueee {
+            background-color: #4C6085;
+        }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
     {{ $slot }}
 </body>
 </html>

@@ -11,18 +11,17 @@
     @vite('resources/css/app.css')
     <title>Document</title>
     <style>
-        body {
-
-        }
-
         @page {
-            size: A4 portrait;
+            size: a4 portrait;
             margin: 1%;
         }
 
         #page[data-size="A4"] {
             width: 21cm;
             height: 29.7cm;
+        }
+
+        #page {
             background:
                 linear-gradient(-90deg, rgba(0,0,0,.05) 1px, transparent 1px),
                 linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px),
@@ -61,7 +60,7 @@
 </head>
 <body class="bg-gray-900">
 
-    <header class="mb-5">
+    <header class="mb-2 space-y-1">
         <section class="bg-gray-200 mx-auto flex justify-between items-center p-2 border-b-2 border-l-2 border-r-2
         border-gray-400">
             <div x-data="{ show: false }" class="flex items-center space-x-3">
@@ -77,7 +76,11 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
 
                     <span class="text-sm">Add Element</span>
+
+
                 </button>
+
+{{--                <span id="style-me">Style Me</span>--}}
 
                 <div x-show="show" style="display: none" class="relative z-10" aria-labelledby="modal-title"
                      role="dialog"
@@ -138,15 +141,14 @@
                 <button id="save" class="bg-green-500 text-white px-4 rounded font-semibold text-sm h-8">SAVE</button>
             </div>
         </section>
-    </header>
 
-    <div class="absolute right-0 mr-44">
-        <ul class="flex flex-col text-center space-y-2 text-white">
-            <li class="bg-blue-500 px-3 px-0.5 rounded cursor-pointer">S</li>
-            <li class="bg-orange-500 border-2 px-0.5 border-white rounded cursor-pointer">A4</li>
-            <li class="bg-pink-500 rounded px-0.5 cursor-pointer">L</li>
-        </ul>
-    </div>
+        <section class="mx-auto">
+            <ul class="text-white flex items-center justify-end space-x-2">
+                <li id="a4-button" class="border h-7 w-7 text-center rounded bg-gray-600 cursor-pointer">A4</li>
+                <li id="legal-button" class="border h-7 w-7 text-center rounded bg-gray-600 cursor-pointer">L</li>
+            </ul>
+        </section>
+    </header>
 
     <div id="details"
          style="display: none"
@@ -162,6 +164,12 @@
          data-marshal="{{ $certificate->marshal }}"
          data-establishment="{{ $certificate->applicant->establishment }}"
          data-others="{{ $certificate->others }}"
+    >
+    </div>
+
+    <div id="page-config"
+         data-name="{{ $page->name }}"
+         data-rule="{{ $page->rule }}"
     >
     </div>
 
@@ -181,6 +189,9 @@
         let textContent = document.getElementById('textContent');
         const details = document.getElementById('details').dataset;
         const elements = JSON.parse(JSON.stringify(details));
+        const pageConfig = document.getElementById('page-config').dataset;
+
+        console.log(pageConfig.rule);
 
         const positions = {
             applicant: {
@@ -390,6 +401,56 @@
 
             textContent.value = '';
         });
+
+        const a4Button = document.getElementById('a4-button');
+        const legalButton = document.getElementById('legal-button');
+
+        const a4Rule = "@page { size: a4; margin: 1%; }";
+        const legalRule = "@page { size: legal; margin: 1%; }";
+
+        const a4Dimensions = '#page[data-size="A4"] { width: 21cm; height: 29.7cm; }';
+        const legalDimensions = '#page[data-size="legal"] { width: 21cm; height: 90cm; }';
+
+        // let currentPageRule = window.document.styleSheets.item(1).cssRules.item(0).style.parentRule.cssText;
+        // let testRule = window.document.styleSheets.item(1).cssRules.item(0).style;
+        // let currentPageDimensions = window.document.styleSheets.item(1).cssRules.item(1).cssText;
+
+        // page.dataset.size = 'legal'
+        // page.style.width = '21cm';
+        // page.style.height = '35.56cm';
+
+        let cssPagedMedia = (function () {
+            let style = document.createElement('style');
+            document.head.appendChild(style);
+            return function (rule) {
+                style.innerHTML = rule;
+            };
+        }());
+
+        cssPagedMedia.size = function (size) {
+            cssPagedMedia('@page { size: ' + size + '; margin: 1%; }');
+        };
+
+        cssPagedMedia.size(pageConfig.rule);
+
+        // console.log(currentPageRule);
+        // console.log(testRule);
+
+        // a4Button.addEventListener('click', () => {
+        //     currentPageRule = a4Rule;
+        //     currentPageDimensions = a4Dimensions;
+        //
+        //     console.log(currentPageDimensions);
+        //     console.log(currentPageRule);
+        // });
+        //
+        // legalButton.addEventListener('click', () => {
+        //     currentPageRule = legalRule;
+        //     currentPageDimensions = legalDimensions;
+        //
+        //     console.log(currentPageDimensions);
+        //     console.log(currentPageRule);
+        // })
 
     </script>
 </body>

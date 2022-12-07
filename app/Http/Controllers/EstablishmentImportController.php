@@ -16,13 +16,17 @@ class EstablishmentImportController extends Controller
 
     public function upload()
     {
-        if (!Establishment::latest()->get()[0]) {
-            $attributes = request()->validate([
-                'establishments_list' => ['required']
-            ]);
+        $attributes = request()->validate([
+            'establishments_list' => ['required']
+        ]);
 
-            $imports = Excel::import(new EstablishmentsImport(), $attributes['establishments_list']);
+        $imports = Excel::import(new EstablishmentsImport(), $attributes['establishments_list']);
+
+        if (Establishment::latest()->get()[0]) {
+            activity('Establishment Record Imported')->log('Establishment record(s) has been imported. : ');
         }
+
+
 
         activity('Establishment Record Imported')->log('Establishment record(s) has been imported. ID of the latest Establishment before importing: ');
 
